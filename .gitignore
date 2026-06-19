@@ -35,3 +35,12 @@ cd FatherTimeSDKP
 
 # Execute the local proxy harness to verify execution loops
 python test_mcp_stream.py
+
+# Stage the server and validation client under the explicit Workspace path
+git add Workspace/mcp_kapnack_server.py Workspace/Workspace/test_mcp_client.py
+
+# Commit the operational baseline with a clear message
+git commit -m "Deployment: Deploy root-level MCP server and validation harness to Workspace"
+
+# Push the verified codebase to your remote main branch
+git push origin main
