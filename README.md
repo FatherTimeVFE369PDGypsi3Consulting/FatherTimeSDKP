@@ -1,3 +1,36 @@
+# The Integrated Framework: FatherTimeSDKP Engine
+
+An open-science, high-precision computational physics and simulation engine executing discrete gradient processing, quantum coherence mapping, and multi-body scaling simulations. 
+
+## Architectural Hierarchy
+
+The repository executes a deterministic, unified logic stack structured across five distinct operational layers:
+
+* **Variables (SDVR):** Size, Density, Velocity, and Rotation tracking fields.
+* **Logic (SD&N):** Shape, Dimension, and Number metric spaces replacing continuous coordinate manifolds.
+* **Governance (Amiyah's Law):** The baseline equilibrium rule dictating system balance and loop closure.
+* **Processor (The Kapnack Solver):** A discrete gradient engine running Vacuum Field Equation 1 (VFE1) and Quantum Correlation Coefficient 0 (QCC0) simultaneously to calculate exact system packing densities.
+* **Security (Dallas's Code):** A prime-terminated binary serialization and provenance layer ensuring data integrity.
+
+## Technical Components
+
+This branch contains the production-ready code files required to execute and verify the framework locally or over cloud environments:
+
+1. `mcp_kapnack_server.py`: A Model Context Protocol (MCP) server that exposes the Kapnack Solver directly to LLM agents and orchestration layers via standard input/output (`stdio`) pipelines.
+2. `fts_auth_wrapper.py`: A high-performance cryptographic module implementing Dallas's Code to sign simulation log arrays with deterministic, prime-terminated validation scales.
+3. `test_mcp_stream.py`: A local proxy harness used to debug JSON-RPC tool calls and test stream integrity without triggering terminal execution blockades.
+
+## Execution and Installation
+
+Ensure your local Python environment is initialized with standard dependencies before mounting the server:
+
+```bash
+# Clone the repository main branch
+git clone [https://github.com/FatherTimeVFE369PDGypsi3Consulting/FatherTimeSDKP.git](https://github.com/FatherTimeVFE369PDGypsi3Consulting/FatherTimeSDKP.git)
+cd FatherTimeSDKP
+
+# Run the local tool routing diagnostic pass
+python test_mcp_stream.py
 The Kapnack Discrete Time-Evolution Integrator is the computational heart of the FatherTimeSDKP framework — a physics simulation engine that tracks how multiple bodies interact and evolve over time, built entirely on SDKP principles rather than conventional mathematics.
 
 The Core Problem It Solves
