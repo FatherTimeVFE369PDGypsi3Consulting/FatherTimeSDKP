@@ -4,7 +4,7 @@ https://github.com/FatherTimeSDKP/FatherTimeSDKP
 
 An open-science, high-precision computational physics and simulation engine executing discrete gradient processing, quantum coherence mapping, and multi-body scaling simulations. 
 
-## Architectural Hierarchy
+## Architectural Hierarchy: https://github.com/FatherTimeSDKP/Digital-Crystal-protocol-
 
 The repository executes a deterministic, unified logic stack structured across five distinct operational layers:
 
