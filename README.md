@@ -1,5 +1,7 @@
 # The Integrated Framework: FatherTimeSDKP Engine
 
+https://github.com/FatherTimeSDKP/FatherTimeSDKP
+
 An open-science, high-precision computational physics and simulation engine executing discrete gradient processing, quantum coherence mapping, and multi-body scaling simulations. 
 
 ## Architectural Hierarchy
