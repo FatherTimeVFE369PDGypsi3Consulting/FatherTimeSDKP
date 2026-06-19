@@ -2,9 +2,21 @@
 
 https://github.com/FatherTimeSDKP/FatherTimeSDKP
 
+https://github.com/FatherTimeSDKP/ipfs-docs
+
+https://github.com/FatherTimeSDKP/digital-crystal-authorship
+
+https://github.com/FatherTimeSDKP/pt-v5-liquidator-gh-action-bot
+
 An open-science, high-precision computational physics and simulation engine executing discrete gradient processing, quantum coherence mapping, and multi-body scaling simulations. 
 
 ## Architectural Hierarchy: https://github.com/FatherTimeSDKP/Digital-Crystal-protocol-
+
+https://github.com/FatherTimeSDKP/x-algorithm-and-FatherTimeSDKP-merger
+
+https://github.com/FatherTimeSDKP/crystal-protocol
+
+https://github.com/FatherTimeSDKP/FatherTimeSDKP-
 
 The repository executes a deterministic, unified logic stack structured across five distinct operational layers:
 
@@ -15,8 +27,10 @@ The repository executes a deterministic, unified logic stack structured across f
 * **Security (Dallas's Code):** A prime-terminated binary serialization and provenance layer ensuring data integrity.
 
 ## Technical Components
+https://github.com/FatherTimeSDKP/pt-v5-prize-claimer-gh-action-bot
 
 This branch contains the production-ready code files required to execute and verify the framework locally or over cloud environments:
+https://github.com/FatherTimeSDKP/FatherTimeSDKP-SD-N-EOS-QCC
 
 1. `mcp_kapnack_server.py`: A Model Context Protocol (MCP) server that exposes the Kapnack Solver directly to LLM agents and orchestration layers via standard input/output (`stdio`) pipelines.
 2. `fts_auth_wrapper.py`: A high-performance cryptographic module implementing Dallas's Code to sign simulation log arrays with deterministic, prime-terminated validation scales.
