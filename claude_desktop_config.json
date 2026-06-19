@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "fathertimesdkp-engine": {
+      "command": "python3",
+      "args": [
+        "/absolute/path/to/FatherTimeSDKP/mcp_kapnack_server.py"
+      ]
+    }
+  }
+}
