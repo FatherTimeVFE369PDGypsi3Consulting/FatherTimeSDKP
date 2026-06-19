@@ -1,4 +1,49 @@
-# This .gitignore is appropriate for repositories deployed to GitHub Pages and using
+
+# Python bytecode and cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local operating system temporary files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+desktop.ini
+
+# Virtual environments and localized interpreter setups
+.venv/
+venv/
+ENV/
+env/
+.env
+.venv
+
+# Testing, profiling, and coverage cache outputs
+.pytest_cache/
+.coverage
+htmlcov/
+.hypothesis/
+
+# Packaging, distributions, and local build artifacts
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+
+# Local logging outputs and execution buffers
+*.log
+pip-log.txtThis .gitignore is appropriate for repositories deployed to GitHub Pages and using
 # a Gemfile as specified at https://github.com/github/pages-gem#conventional
 
 # Basic Jekyll gitignores (synchronize to Jekyll.gitignore)
