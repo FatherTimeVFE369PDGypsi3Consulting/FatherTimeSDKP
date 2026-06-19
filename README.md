@@ -1,3 +1,37 @@
+# The Integrated Framework: FatherTimeSDKP Unifying Mathematical Framework
+
+This repository serves as the official software implementation workspace and open-science provenance anchor for **The Integrated Framework** (FatherTimeSDKP). It provides functional, production-ready code executing the unified physical and logical modeling layer designed to operate over standardized Model Context Protocol (MCP) stream engines.
+
+By translating theoretical mathematical constants into standardized, verifiable JSON-RPC 2.0 pipelines, this architecture enables real-time system coherence calculations, discrete gradient processing, and post-quantum cryptographic security validation.
+
+---
+
+## 🌌 Core Framework Architecture
+
+The computational engine operates via a strict five-tier hierarchical execution structure:
+
+1. **Variables — SDVR**: Ingestion of localized multi-body states parameterized by Size, Density, Velocity, and Rotation.
+2. **Logic — SD&N**: System processing via Shape, Dimension, and Number rules, replacing traditional tensor complexities with a Discrete Gradient Processor to compute exact packing densities.
+3. **Governance — Amiyah’s Law**: The core equilibrium rule establishing dynamic stabilization bounds and measuring total system coherence.
+4. **Processor — The Kapnack Solver/Engine**: The core mathematical tool executing the simultaneous processing of Vacuum Field Equation 1 (VFE1) and Quantum Correlation Coefficient 0 (QCC0).
+5. **Security — Dallas’s Code**: A post-quantum, prime-terminated binary protocol providing an immutable integrity seal on all outbound system payloads.
+
+Instead of relying on the variable speed of light, the architecture utilizes Earth Orbital Speed (EOS) as its foundational baseline constant.
+
+---
+
+## 📂 Repository Workspace Structure
+
+To prevent path resolution friction and preserve clean version control boundaries, the repository is organized into a streamlined, automated execution workspace:
+
+```text
+FatherTimeSDKP/
+├── .gitignore             # Filters out local Python caches and runtime bytecodes
+├── README.md              # Global repository documentation and authority record
+└── Workspace/             # Active execution subfolder
+    ├── mcp_kapnack_server.py  # Standard stdio MCP Server running the Kapnack Engine
+    └── test_mcp_client.py  # Automated JSON-RPC validation harness and stream test
+
 # The Integrated Framework (FatherTimeSDKP)
 
 Welcome to the primary repository for the Integrated Framework, an absolute, unified physical and logical model. This repository acts as the computational core and public entry point for the implementation of the Size–Density–Kinetic Principle (SDKP), Shape–Dimension–Number logic (SD&N), and the Quantum Computerization Consciousness (QCC) architecture.
