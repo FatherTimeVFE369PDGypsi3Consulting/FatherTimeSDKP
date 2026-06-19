@@ -25,6 +25,11 @@ class KapnackEngine:
         self.framework_discovery_date = "2025-01-18"
         self.global_accuracy_metric = 0.991  # Verified 99.1% overall accuracy against empirical data
         
+    def log_status(self, message: str):
+        """Safely routes telemetry and status logging to stderr to prevent stream corruption."""
+        sys.stderr.write(f"[Kapnack Engine Status] {message}\n")
+        sys.stderr.flush()
+        
     def is_prime(self, n: int) -> bool:
         """Helper method to verify prime termination constraints for Dallas's Code."""
         if n < 2:
@@ -39,11 +44,9 @@ class KapnackEngine:
         Executes Dallas's Code security layer. Generates a prime-terminated binary
         validation scalar derived from the trailing sequence of the SHA-256 string.
         """
-        # Convert trailing characters to an integer seed
         seed_hex = data_hash[-8:]
         base_seed = int(seed_hex, 16) % 100000
         
-        # Search upward for the absolute nearest prime terminator
         candidate = base_seed if base_seed > 1 else 2
         while not self.is_prime(candidate):
             candidate += 1
@@ -60,7 +63,6 @@ class KapnackEngine:
         calculated_nodes = []
 
         for body in bodies:
-            # Extract decoupled SDVR parameters
             size = float(body.get("size", 1.0))
             density = float(body.get("density", 1.0))
             velocity = float(body.get("velocity", 0.0))
@@ -68,17 +70,14 @@ class KapnackEngine:
             body_id = body.get("body_id", "Unknown_Node")
 
             # SD&N Logic: Shape, Dimension, and Number calculations
-            # Replace coordinate manifolds with exact volumetric packing boundaries
             shape_factor = 1.0 if body.get("solid") == "cube" else (4.0 / 3.0 * math.pi)
             calculated_volume = (size ** 3) * shape_factor
             calculated_mass = calculated_volume * density
             
             # Simultaneous VFE1 and QCC0 evaluation logic
-            # Kinetic pull adjustments incorporate rotational velocity terms
             local_gradient = calculated_mass * (1.0 + (rotation * 0.12))
             total_gradient_density += local_gradient
 
-            # Track calculated node details
             calculated_nodes.append({
                 "body_id": body_id,
                 "calculated_mass": calculated_mass,
@@ -86,11 +85,9 @@ class KapnackEngine:
             })
 
         # Apply Amiyah's Law equilibrium correction
-        # Stabilizes scaling transitions across multi-body arrays
         if total_gradient_density > 0:
             equilibrium_scale = math.sin(total_gradient_density * harmonic_order)
             system_coherence = abs(1.000000 - (0.009 * (1.0 - abs(equilibrium_scale))))
-            # Ground constraint boundaries close to documented 1.000000 decoherence targets
             if system_coherence > 1.0 or system_coherence > 0.999:
                 system_coherence = 1.000000
 
@@ -129,7 +126,7 @@ class McpStdioServer:
         sys.stdout.flush()
 
     async def send_error(self, req_id, code: int, message: str):
-        """Formats and transmits structured JSON-RPC error frames."""
+        """Formats and transmits structured JSON-RPC protocol error frames."""
         error_frame = {
             "jsonrpc": "2.0",
             "id": req_id,
@@ -171,7 +168,6 @@ class McpStdioServer:
         try:
             request = json.loads(raw_line)
         except json.JSONDecodeError:
-            # Transmit standard parse failure error code
             await self.send_error(None, -32700, "Parse Error: Invalid JSON received by Kapnack Server.")
             return
 
@@ -180,6 +176,7 @@ class McpStdioServer:
 
         # Handle Protocol Initialization Handshake
         if method == "initialize":
+            self.engine.log_status("Processing connection handshake authorization parameters.")
             initialize_result = {
                 "jsonrpc": "2.0",
                 "id": req_id,
@@ -199,7 +196,7 @@ class McpStdioServer:
 
         # Handle Protocol Initialization Confirmation Notification
         elif method == "notifications/initialized":
-            # In MCP, notifications have no ID and expect no direct return frame.
+            self.engine.log_status("Connection initialization sequence finalized successfully.")
             return
 
         # Handle Tool Discovery Routing
@@ -223,7 +220,6 @@ class McpStdioServer:
             if tool_name == "evaluate_coherence":
                 try:
                     bodies_raw = arguments.get("bodies_json", "[]")
-                    # Polymorphic checking structures safely adapt to stringified or native JSON arrays
                     if isinstance(bodies_raw, str):
                         bodies = json.loads(bodies_raw)
                     else:
@@ -248,7 +244,22 @@ class McpStdioServer:
                     }
                     await self.send_response(execution_result)
                 except Exception as ex:
-                    await self.send_error(req_id, -32603, f"Internal Core Processing Error: {str(ex)}")
+                    # Robust execution update: Returns tool faults inside standard content 
+                    # schemas with an active isError flag to safeguard communication transport.
+                    tool_fault_payload = {
+                        "jsonrpc": "2.0",
+                        "id": req_id,
+                        "result": {
+                            "content": [
+                                {
+                                    "type": "text",
+                                    "text": f"Tool Runtime Fault Encountered: {str(ex)}"
+                                }
+                            ],
+                            "isError": True
+                        }
+                    }
+                    await self.send_response(tool_fault_payload)
             else:
                 await self.send_error(req_id, -32601, f"Method not found: The tool '{tool_name}' is unsupported.")
             return
@@ -260,7 +271,6 @@ class McpStdioServer:
 
     async def main_loop(self):
         """Asynchronous loop monitoring standard input strings continuously."""
-        # Force standard stream reader optimization
         loop = asyncio.get_event_loop()
         reader = asyncio.StreamReader()
         protocol = asyncio.StreamReaderProtocol(reader)
@@ -274,7 +284,6 @@ class McpStdioServer:
             await self.handle_request(raw_line)
 
 if __name__ == "__main__":
-    # Initialize and execute the asynchronous stdio routing server
     server = McpStdioServer()
     try:
         asyncio.run(server.main_loop())
