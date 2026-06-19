@@ -29,3 +29,9 @@ git commit -m "Deploy: Clean MCP Engine and Dallas Code Primal Verification Wrap
 # Push the foundational architecture to the main branch
 git branch -M main
 git push -u origin main
+# Clone the repository main branch layout
+git clone https://github.com/FatherTimeVFE369PDGypsi3Consulting/FatherTimeSDKP.git
+cd FatherTimeSDKP
+
+# Execute the local proxy harness to verify execution loops
+python test_mcp_stream.py
