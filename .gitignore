@@ -16,3 +16,16 @@ _site/
 # counterproductive to check this file into the repository.
 # Details at https://github.com/github/pages-gem/issues/768
 Gemfile.lock
+# Initialize the local workspace repository
+git init
+
+# Bind the local code baseline directly to your unified consulting organization path
+git remote add origin https://github.com/FatherTimeVFE369PDGypsi3Consulting/FatherTimeSDKP.git
+
+# Stage and commit your clean, syntax-verified files
+git add mcp_kapnack_server.py fts_auth_wrapper.py
+git commit -m "Deploy: Clean MCP Engine and Dallas Code Primal Verification Wrapper under Gypsi Consulting"
+
+# Push the foundational architecture to the main branch
+git branch -M main
+git push -u origin main
