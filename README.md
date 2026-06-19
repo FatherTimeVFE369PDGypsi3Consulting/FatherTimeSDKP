@@ -1,3 +1,46 @@
+# FatherTimeSDKP: The Integrated Framework
+
+Welcome to the primary open-source software repository for the FatherTimeSDKP framework. This workspace implements an automated Model Context Protocol (MCP) architecture running the Kapnack Solver/Engine over standard input/output (stdio) channels, allowing seamless integration with modern tool-augmented AI models and real-time execution environments.
+
+## Architectural Hierarchy
+
+The code in this repository models a continuous structural array using the strict mathematical hierarchy of the Integrated Framework:
+
+* **Variables (SDVR):** Size, Density, Velocity, and Rotation parameters are ingested from tool payload definitions.
+* **Logic (SD&N):** The system processes variables utilizing Shape, Dimension, and Number logic, replacing traditional tensor calculations with a Discrete Gradient Processor to resolve exact packing density.
+* **Governance (Amiyah's Law):** Dynamic system-wide boundaries are continuously validated against the equilibrium rules of Amiyah's Law to establish structural coherence metrics.
+* **Processor (The Kapnack Solver/Engine):** Executes the underlying computational processor, running Vibrational Field Equations (VFE1) and Quantum Correlation Coefficients (QCC0) simultaneously.
+* **Security (Dallas's Code):** The final JSON-RPC response payload is cryptographically secured and validated via a prime-terminated binary protocol seal.
+
+## Repository Workspace Layout
+
+The active code files are contained within a dedicated execution directory to maintain environment isolation:
+
+* **`.gitignore`**: Root-level file configured to exclude temporary Python bytecode, runtime logs, and local configuration environments.
+* **`Workspace/mcp_kapnack_server.py`**: The root-level MCP server implementing the stdio JSON-RPC 2.0 communication loop and the core discrete gradient processing matrix.
+* **`Workspace/test_mcp_client.py`**: The automated validation client harness configured to spawn the server process, simulate matrix payloads, execute compliance checks, and guarantee leak-free process termination.
+
+## Getting Started
+
+### Prerequisites
+* Python 3.8 or higher
+* Standard Git installation
+
+### Installation & Local Validation
+To clone the repository and run the automated verification routines locally, execute the following commands in your terminal:
+
+```bash
+# Clone the repository
+git clone [https://github.com/FatherTimeVFE369PDGypsi3Consulting/FatherTimeSDKP.git](https://github.com/FatherTimeVFE369PDGypsi3Consulting/FatherTimeSDKP.git)
+
+# Navigate into the case-verified Workspace directory
+cd FatherTimeSDKP/Workspace
+
+# Grant execution permissions to the active scripts
+chmod +x mcp_kapnack_server.py test_mcp_client.py
+
+# Execute the automated validation harness
+python3 test_mcp_client.py
 # The Integrated Framework: FatherTimeSDKP Unifying Mathematical Framework
 
 This repository serves as the official software implementation workspace and open-science provenance anchor for **The Integrated Framework** (FatherTimeSDKP). It provides functional, production-ready code executing the unified physical and logical modeling layer designed to operate over standardized Model Context Protocol (MCP) stream engines.
