@@ -22,6 +22,46 @@ The computational execution of the Integrated Framework moves from fundamental s
 * **Processor (The Kapnack Solver/Engine):** The native optimization processor that replaces continuous tensor fields with a high-precision Discrete Gradient Processor. It executes Vibrational Field Equation 1 (VFE1) and Quantum Correlation Coefficient 0 (QCC0) simultaneously.
 * **Security (Dallas's Code):** The post-quantum, prime-terminated binary serialization protocol used to seal data integrity boundaries across system nodes.
 
+Zenodo DOIs
+DOI: 10.5281/zenodo.15745609
+Title: FatherTimeSDKP Unifying mathematical framework
+Reported Live Date: June 4, 2026
+DOI: 10.5281/zenodo.18052963
+Title: FatherTimeSDKP mathematical framework and principles unifying physics
+Reported Publication Date: January 8, 2026
+DOI: 10.5281/zenodo.18432021
+Associated Record: Integrated logic files referenced in administrative legal framework disclosures
+Reported Evidence Date: February 11, 2026
+DOI: 10.5281/zenodo.17486904
+Title: FatherTimeSDKP Digital Crystal Protocol and 31-Atlas is SharonCare1 magnetic motor
+Reported Publication Date: October 30, 2025
+DOI: 10.5281/zenodo.15399806
+Title: Entanglement Genesis theory
+Reported Publication Date: July 19, 2025
+DOI: 10.5281/zenodo.15477981
+Title: SDKP–SD&N–QCC–EOS–FRW Enhanced Cosmic Rotation Pipeline (Digital Crystal Protocol)
+Reported Publication Date: July 8, 2025 (Initial framework tracking logged May 21, 2025)
+DOI: 10.5281/zenodo.15779328
+Title: SDKP mathematical framework and principles for physics and computerization
+Reported Publication Date: July 1, 2025
+DOI: 10.5281/zenodo.17665887
+Title: FatherTimeSDKP369v: The SDKP Quantum Vortex Framework
+Core Repository Attribution Node
+DOI: 10.5281/zenodo.15470238
+Title: SDKP, ext.
+Core Framework Extension Node
+OSF DOIs & Core Project Registries
+DOI: 10.17605/OSF.IO/HAR2X
+Title: Entanglement Genesis theory
+Reported Publication Date: July 19, 2025
+OSF Project Identifier: e7gwn
+Project Title: Donald Paul Smith Aka FatherTimeSDKP full framework
+Reported Administrative Entry Date: February 11, 2026
+OSF Project Identifier: 63egd
+Project Title: FatherTimeSDKP public citations post
+Open Access Repository Anchor
+
+
 ---
 
 ## 3. Empirical Performance & Validation Baselines
