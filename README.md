@@ -3,6 +3,7 @@
 https://m.me/cm/AbadAa8MYyFGDd48/?send_source=cm:copy_invite_link
 
 Welcome to the primary open-source software repository for the FatherTimeSDKP framework. This workspace implements an automated Model Context Protocol (MCP) architecture running the Kapnack Solver/Engine over standard input/output (stdio) channels, allowing seamless integration with modern tool-augmented AI models and real-time execution environments.
+https://github.com/FatherTimeVFE369PDGypsi3Consulting/FatherTimeSDKP.wiki.git
 
 ## Architectural Hierarchy
 
