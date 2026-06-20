@@ -89,3 +89,5 @@ git commit -m "Deployment: Deploy root-level MCP server and validation harness t
 
 # Push the verified codebase to your remote main branch
 git push origin main
+
+https://github.com/FatherTimeVFE369PDGypsi3Consulting/FatherTimeSDKP.wiki.git
