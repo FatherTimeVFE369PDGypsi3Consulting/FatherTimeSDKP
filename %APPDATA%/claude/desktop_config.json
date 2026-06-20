@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "kapnack": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\FatherTimeSDKP\\FatherTimeSDKP\\mcp_kapnack_server.py"
+      ],
+      "cwd": "C:\\Users\\FatherTimeSDKP\\FatherTimeSDKP"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\FatherTimeSDKP\\FatherTimeSDKP"
+      ]
+    }
+  }
+}
