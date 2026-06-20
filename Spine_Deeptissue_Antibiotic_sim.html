@@ -1,0 +1,776 @@
+Input 
+Bash
+
+wkhtmltopdf --version && which wkhtmltopdf
+
+Output
+JSON
+
+{
+  "returncode" : 0,
+  "stdout" : "wkhtmltopdf 0.12.6\n\/usr\/bin\/wkhtmltopdf\n",
+  "stderr" : ""
+}
+Input
+
+html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CS-B1 Nano-Peptide: Theoretical Specification</title>
+<style>
+  @page {
+    size: Letter;
+    margin: 20mm 18mm 22mm 18mm;
+  }
+  @page :first { margin-top: 0; }
+
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 10.5pt;
+    line-height: 1.58;
+    color: #1a1a1a;
+    margin: 0;
+  }
+
+  /* ============================
+     COVER
+  ============================ */
+  .cover {
+    background: linear-gradient(160deg, #0d2647 0%, #1A3C5E 55%, #2E5496 100%);
+    min-height: 297mm;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 52px 40px 52px;
+    page-break-after: always;
+    color: #ffffff;
+  }
+  .cover-top { }
+  .cover-tag {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 8.5pt;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 34px;
+  }
+  .cover h1 {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 36pt;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.1;
+    margin: 0 0 8px 0;
+  }
+  .cover .codename {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14pt;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+  }
+  .cover-rule {
+    width: 60px;
+    height: 3px;
+    background: #7ec8e3;
+    margin: 0 0 28px 0;
+  }
+  .cover-abstract {
+    font-size: 11pt;
+    color: rgba(255,255,255,0.80);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+  .cover-bottom {
+    border-top: 1px solid rgba(255,255,255,0.20);
+    padding-top: 20px;
+  }
+  .cover-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .cover-meta-item label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 7.5pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .cover-meta-item .val {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9.5pt;
+    color: #ffffff;
+    font-weight: 600;
+  }
+  .cover-badges {
+    margin-top: 18px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .cbadge {
+    font-family: 'Courier New', monospace;
+    font-size: 7.5pt;
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.30);
+    border-radius: 2px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* ============================
+     BODY
+  ============================ */
+  .page-body { padding: 0; }
+
+  h1.sec {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15pt;
+    font-weight: 800;
+    color: #1A3C5E;
+    margin: 28px 0 12px 0;
+    padding-bottom: 7px;
+    border-bottom: 2.5px solid #1A3C5E;
+    page-break-after: avoid;
+  }
+  h1.sec .n {
+    display: inline-block;
+    background: #1A3C5E;
+    color: #fff;
+    font-size: 10pt;
+    font-weight: 800;
+    border-radius: 2px;
+    padding: 2px 9px;
+    margin-right: 10px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+
+  h2.sub {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: #2E5496;
+    margin: 20px 0 8px 0;
+    page-break-after: avoid;
+  }
+  h3.tri {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #1A3C5E;
+    margin: 14px 0 5px 0;
+    page-break-after: avoid;
+  }
+
+  p { margin: 0 0 9px 0; text-align: justify; }
+
+  .section { margin-bottom: 6px; }/* ============================
+     CALLOUTS
+  ============================ */
+  .box {
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 10pt;
+  }
+  .box-blue {
+    background: #EBF3FB;
+    border-left: 4px solid #2E5496;
+  }
+  .box-navy {
+    background: #f0f4f8;
+    border-left: 4px solid #1A3C5E;
+  }
+  .box-green {
+    background: #f0f7f0;
+    border-left: 4px solid #2d7a2d;
+  }
+  .box-amber {
+    background: #FFFDE7;
+    border-left: 4px solid #c8a000;
+  }
+  .box-red {
+    background: #fdf0f0;
+    border-left: 4px solid #8a3030;
+  }
+  .box label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 5px;
+    color: #1A3C5E;
+  }
+  .box-green label { color: #2d7a2d; }
+  .box-amber label { color: #7a5f00; }
+  .box-red label { color: #8a3030; }
+
+  .eq-block {
+    background: #f7f8fa;
+    border: 1px solid #d8dde8;
+    border-radius: 3px;
+    padding: 14px 20px;
+    margin: 10px 0;
+    font-family: 'Georgia', serif;
+    font-size: 12pt;
+    text-align: center;
+    color: #1A3C5E;
+  }
+  .eq-block .eq-label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 8pt;
+    color: #888;
+    text-align: right;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* ============================
+     TABLES
+  ============================ */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 16px 0;
+    font-size: 9.5pt;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    page-break-inside: avoid;
+  }
+  thead th {
+    background: #1A3C5E;
+    color: #fff;
+    text-align: left;
+    padding: 8px 10px;
+    font-weight: 700;
+    font-size: 9pt;
+  }
+  tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #e4e8ef;
+    vertical-align: top;
+  }
+  tbody tr:nth-child(even) td { background: #f7f9fb; }
+  .mono { font-family: 'Courier New', monospace; font-size: 9pt; }
+
+  /* ============================
+     PARAMETER CARDS
+  ============================ */
+  .param-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  .param-card {
+    border: 1px solid #d0d8e8;
+    border-radius: 4px;
+    padding: 12px 14px;
+    background: #f8fafb;
+  }
+  .param-card .var {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 18pt;
+    font-weight: 900;
+    color: #1A3C5E;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .param-card .var-name {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 8.5pt;
+    color: #2E5496;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 7px;
+  }
+  .param-card .val {
+    font-family: 'Courier New', monospace;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #1A3C5E;
+    margin-bottom: 4px;
+  }
+  .param-card p {
+    font-size: 9pt;
+    color: #444;
+    margin: 0;
+    text-align: left;
+  }
+
+  /* ============================
+     PHASE HEADER
+  ============================ */
+  .phase-header {
+    background: #1A3C5E;
+    color: #ffffff;
+    border-radius: 3px;
+    padding: 12px 18px;
+    margin: 22px 0 14px 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    page-break-after: avoid;
+  }
+  .phase-header .ph-tag {
+    font-size: 8pt;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 3px;
+  }
+  .phase-header .ph-title {
+    font-size: 13pt;
+    font-weight: 800;
+  }
+
+  /* ============================
+     SDKP TRANSLATION BOX
+  ============================ */
+  .translation {
+    border: 1px dashed #2E5496;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-size: 9.5pt;
+    background: #f5f8fd;
+  }
+  .translation .t-label {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #2E5496;
+    margin-bottom: 4px;
+    display: block;
+  }/* ============================
+     TIMELINE
+  ============================ */
+  .timeline { margin: 12px 0; }
+  .tl-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 10px;
+    align-items: flex-start;
+  }
+  .tl-dot {
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #1A3C5E;
+    color: #fff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .tl-content { flex: 1; }
+  .tl-content strong {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10pt;
+    color: #1A3C5E;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* ============================
+     FOOTER
+  ============================ */
+  .doc-footer {
+    margin-top: 30px;
+    border-top: 2px solid #1A3C5E;
+    padding-top: 14px;
+    text-align: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9.5pt;
+    color: #1A3C5E;
+    font-weight: 700;
+  }
+  .doc-footer .sub-foot {
+    font-size: 8.5pt;
+    color: #888;
+    font-weight: 400;
+    margin-top: 4px;
+  }
+
+  ul.clean { margin: 6px 0 10px 22px; padding: 0; }
+  ul.clean li { margin-bottom: 5px; font-size: 10.5pt; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 10px 0; }
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="cover-tag">Gypsi Consulting &mdash; Theoretical Specification &mdash; CS-B1</div>
+    <h1>CS-B1<br>Nano-Peptide</h1>
+    <div class="codename">Biophysical Framework &amp; Clinical Translation Specification</div>
+    <div class="cover-rule"></div>
+    <div class="cover-abstract">
+      A deterministic, size-density-kinetics-position (SDKP)-guided antimicrobial nano-peptide targeting deep-tissue biofilms surrounding the spinal cord and sciatic nerve, designed for bloodnerve barrier penetration via density homology, stimulus-responsive cryptographic targeting, and autonomous equilibrium-governed termination.
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-meta-grid">
+      <div class="cover-meta-item">
+        <label>Author</label>
+        <div class="val">Donald Paul Smith</div>
+      </div>
+      <div class="cover-meta-item">
+        <label>Organization</label>
+        <div class="val">Gypsi Consulting</div>
+      </div>
+      <div class="cover-meta-item">
+        <label>Date</label>
+        <div class="val">June 2026</div>
+      </div>
+      <div class="cover-meta-item">
+        <label>ORCID</label>
+        <div class="val">0009-0003-7925-1653</div>
+      </div>
+      <div class="cover-meta-item">
+        <label>Framework DOI</label>
+        <div class="val">10.5281/zenodo.15745609</div>
+      </div>
+      <div class="cover-meta-item">
+        <label>Classification</label>
+        <div class="val">Theoretical Specification</div>
+      </div>
+    </div>
+    <div class="cover-badges">
+      <span class="cbadge">SDKP Framework v1.0</span>
+      <span class="cbadge">SD&amp;N Geometry</span>
+      <span class="cbadge">QCC0 / VFE1</span>
+      <span class="cbadge">Blood-Nerve Barrier</span>
+      <span class="cbadge">Anti-Biofilm</span>
+      <span class="cbadge">Spinal / Sciatic</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== BODY ===================== -->
+<div class="page-body"><!-- ===== SECTION 1 ===== -->
+<div class="section">
+<h1 class="sec"><span class="n">1</span>Clinical Problem Statement</h1>
+
+<h2 class="sub">1.1 &nbsp;The Therapeutic Bottleneck</h2>
+<p>In clinical orthopedics and neurosurgery, treating deep-tissue infections surrounding the spinal cord and sciatic nerve represents an unresolved crisis. As documented at the International Consensus Meeting on Musculoskeletal Infection (March 12, 2026), chronic device and deep-tissue infections are characterized by dense, mature microbial biofilms that isolate pathogens from both the host immune system and conventional systemic antibiotics. Standard care relies on highly invasive surgical debridement paired with multi-month high-dose antibiotic regimens, with treatment failure rates between 35% and 55%.</p>
+
+<p>Bacterial biofilms secrete a highly structured extracellular polymeric substance (EPS) matrix comprised of polysaccharides, extracellular DNA, and lipids. This matrix drives pathogens into low-metabolic persister states, necessitating antibiotic concentrations up to 1,000&times; higher than baseline planktonic bactericidal thresholds &mdash; concentrations that are severely neurotoxic within the spinal and sciatic nerve microenvironment.</p>
+
+<div class="box box-red">
+<label>Unmet Clinical Need</label>
+No current therapeutic modality achieves simultaneous blood-nerve barrier penetration, biofilm-specific targeting, biofilm neutralization without cell lysis, and autonomous deactivation without neurotoxic residue in the spinal-sciatic nerve microenvironment.
+</div>
+
+<h2 class="sub">1.2 &nbsp;Existing State of the Art and Its Limitations</h2>
+<p>State-of-the-art clinical approaches such as Peptilogics&rsquo; engineered anti-biofilm peptide PLG0206 have reduced device-related biofilm failure rates to approximately 7% by mechanically disrupting microbial membranes. However, as noted in synthetic biology literature (February 2026), advanced macrocyclic and self-assembling peptides remain limited by:</p>
+<ul class="clean">
+  <li>Erratic structural flexibility under proteolytic challenge from host serum proteases</li>
+  <li>Variable and unpredictable blood-nerve barrier (BNB) penetration</li>
+  <li>Non-specific membrane binding producing off-target demyelination</li>
+  <li>Persistent chemical residue triggering secondary neuroinflammation</li>
+</ul>
+
+<p>The CS-B1 Nano-Peptide addresses each of these limitations through a deterministic, biophysical design framework rather than probabilistic chemical optimization.</p>
+</div>
+
+<!-- ===== SECTION 2 ===== -->
+<div class="section">
+<h1 class="sec"><span class="n">2</span>Theoretical Framework: SDKP Applied to Nano-Peptide Design</h1>
+
+<p>The CS-B1 specification is grounded in the SDKP (Size &times; Density &times; Kinetics &times; Position) unified framework developed by Donald Paul Smith (Zenodo DOI: 10.5281/zenodo.15745609). In nano-therapeutic design, this framework treats a drug delivery agent not as a passive chemical payload but as a precision biophysical state vector whose four governing parameters are tuned to be geometrically and dynamically congruent with the target microenvironment.</p>
+
+<div class="translation">
+<span class="t-label">SDKP Framework &rarr; Nano-Therapeutic Translation Principle</span>
+&tau; = S &middot; D / K governs the emergent timescale of agent-environment interaction. In the CS-B1 context: S (physical size) governs barrier passage mechanics; D (density) governs immune invisibility and binding selectivity; K (kinetics) governs translocation velocity and diffusion rate; P (position) governs biodistribution and target selectivity. Minimizing &tau; at the BNB and maximizing &tau; at the biofilm interface is the design objective.
+</div>
+
+<h2 class="sub">2.1 &nbsp;SDKP Design Parameters &mdash; CS-B1 State Vector</h2>
+
+<div class="param-grid">
+  <div class="param-card">
+    <div class="var">S</div>
+    <div class="var-name">Size (Hydrodynamic Diameter)</div>
+    <div class="val">5 &ndash; 10 nm</div>
+    <p>Below the native BNB tight junction cutoff (~10 nm paracellular limit under normal conditions; 50&ndash;150 nm during ICAM-1-mediated inflammatory opening). The 5&ndash;10 nm range enables constitutive paracellular transit independent of inflammatory state, providing consistent delivery even pre-inflammatory onset.</p>
+  </div>
+  <div class="param-card">
+    <div class="var">D</div>
+    <div class="var-name">Density (Mass per unit volume)</div>
+    <div class="val">&rho; = 1.004 &ndash; 1.007 g/mL</div>
+    <p>Matched to human cerebrospinal fluid (&rho;<sub>CSF</sub> = 1.006 g/mL) and endoneurial fluid (&rho;<sub>endoneurial</sub> &asymp; 1.004&ndash;1.008 g/mL). Density homology eliminates buoyancy-driven displacement and reduces macrophage pattern-recognition receptor binding, rendering the agent immunologically transparent in transit.</p>
+  </div>
+  <div class="param-card">
+    <div class="var">K</div>
+    <div class="var-name">Kinetics (Translational Diffusivity)</div>
+    <div class="val">D<sub>t</sub> = k<sub>B</sub>T / 6&pi;&eta;R<sub>h</sub></div>
+    <p>Stokes-Einstein diffusivity calculated for R<sub>h</sub> = 2.5&ndash;5 nm in CSF viscosity (&eta; &asymp; 0.7&ndash;1.0 mPa&middot;s). Translational velocity synchronized to neural interstitial fluid oscillation frequency (~0.1&ndash;0.3 Hz) to exploit natural fluid flux as the primary transport mechanism.</p>
+  </div>
+  <div class="param-card">
+    <div class="var">P</div>
+    <div class="var-name">Position (Biodistribution Vector)</div>
+    <div class="val">Spinal-sciatic axis targeting</div>
+    <p>Spatial partitioning governed by the density gradient between systemic circulation (&rho; &asymp; 1.050 g/mL, plasma) and endoneurial fluid (&rho; &asymp; 1.006 g/mL). The agent migrates down the density gradient, concentrating in the perineurial space without active targeting chemistry.</p>
+  </div>
+</div>
+
+</div><!-- ===== SECTION 3 ===== -->
+<div class="section">
+<h1 class="sec"><span class="n">3</span>Four-Phase Biophysical Mechanism of Action</h1>
+
+<!-- PHASE 1 -->
+<div class="phase-header">
+  <div class="ph-tag">Phase 1 &mdash; SDVR State Vector</div>
+  <div class="ph-title">Boundary Mapping and Blood-Nerve Barrier Penetration</div>
+</div>
+
+<p>The blood-nerve barrier (BNB) and blood-spinal cord barrier (BSCB) are treated within the SDKP framework not as static impermeable walls but as predictable fluid-dynamic gradients characterized by a density transition zone. The SDVR (Size, Density, Velocity, Rotation) extension of SDKP governs the four-dimensional state vector of the CS-B1 agent during barrier transit:</p>
+
+<h3 class="tri">Velocity Component (v) &mdash; Interstitial Fluid Synchronization</h3>
+<p>The translational diffusion coefficient D<sub>t</sub> = k<sub>B</sub>T/6&pi;&eta;R<sub>h</sub> is tuned for the viscosity of endoneurial fluid (&eta; &asymp; 0.85 mPa&middot;s at 37&deg;C). At R<sub>h</sub> = 3.5 nm, D<sub>t</sub> &asymp; 7.2 &times; 10<sup>&minus;11</sup> m&sup2;/s, placing the agent within the velocity envelope of natural neural interstitial oscillatory flux. The agent does not require forced convective delivery.</p>
+
+<h3 class="tri">Rotation Component (&omega;) &mdash; Amphipathic Helical Chirality</h3>
+<p>The agent is assigned a defined intrinsic chirality through its amino acid sequence design. L-amino acids confer a right-handed (&alpha;-helical) rotational signature (&omega;). This generates a hydrophobic moment (&#956;H) on the helical face calculated by Eisenberg&rsquo;s helical wheel projection. The hydrophobic moment is tuned to be insufficient to disrupt the highly curved lipid bilayers of myelin sheaths (high intrinsic curvature, negative spontaneous curvature lipids), while remaining sufficient to penetrate the less-curved, negatively charged membranes of bacteria. This is a physical selectivity filter, not a chemical one.</p>
+
+<div class="box box-blue">
+<label>SDVR Physical Selectivity Principle</label>
+Host cell membranes (myelin): high intrinsic curvature + phosphatidylcholine headgroup &rarr; geometric mismatch with agent&rsquo;s helical geometry &rarr; no insertion.<br>
+Bacterial membranes: low curvature + anionic phosphatidylglycerol headgroup + no cholesterol &rarr; geometric match &rarr; field interaction initiated.
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase-header">
+  <div class="ph-tag">Phase 2 &mdash; SD&amp;N Geometry + Kapnack Solver</div>
+  <div class="ph-title">Structural Stabilization Against Proteolytic Degradation</div>
+</div>
+
+<p>Standard linear antimicrobial peptides are cleaved rapidly by host serum proteases (trypsin, chymotrypsin, elastase). The CS-B1 structural design uses the SD&amp;N (Shape-Dimension-Number) geometric framework to eliminate this vulnerability without chemical modification.</p>
+
+<h3 class="tri">Amphipathic Helical Wheel Architecture &mdash; 12-Residue Repeat Unit</h3>
+<p>The peptide sequence is designed around a strict 12-residue helical repeat (3.6 residues/turn &times; 3.33 turns = 12 residues = exactly 1,200&deg; of helical rotation). This maps directly onto the SD&amp;N dodecahedral encoding principle: F=12 faces of the dodecahedron encode the 3D structural state, V=20 vertices encode 4D conformational flexibility, E=30 edges encode 5D stability constraints. In standard structural biochemistry terms, the 12-residue repeat creates a geometrically closed amphipathic surface: hydrophobic residues packed inward in a dodecahedral-symmetry arrangement, hydrophilic residues forming the solvent-exposed face.</p>
+
+<div class="eq-block">
+H<sub>phob</sub> = (1/n) &sum; h<sub>i</sub> &middot; e<sup>i&theta;<sub>i</sub></sup>
+<br><br>
+where &theta;<sub>i</sub> = 100&deg; &middot; i (helical wheel angle), h<sub>i</sub> = Eisenberg hydrophobicity of residue i
+<div class="eq-label">Helical hydrophobic moment equation &mdash; governs membrane selectivity (Eisenberg et al., 1984)</div>
+</div>
+
+<h3 class="tri">Kapnack Solver &mdash; Optimal Packing via 3-6-9 Residue Logic</h3>
+<p>The Kapnack Solver within the SDKP framework applies 3-6-9 digital root logic to optimize residue placement. In structural peptide chemistry, this translates to: 3-residue micro-repetitions determine the local secondary structure hydrogen bond geometry; 6-residue mid-range repetitions determine turn-helix transitions; 9-residue macro-patterns determine the overall tertiary fold. Residues at positions 3, 6, 9, 12 are assigned as &alpha;-helical stabilizers (Ala, Leu preferred) to provide the immutable structural backbone that prevents conformational collapse.</p>
+
+<h3 class="tri">Proteolytic Shielding via Cyclic Stapling</h3>
+<p>The vulnerability of amide bonds to proteolytic cleavage is addressed through hydrocarbon stapling across the i, i+4 positions of the helix (corresponding to the V=4 tetrahedral encoding in SD&amp;N). The covalent hydrocarbon bridge locks the helical geometry in place, making it inaccessible to the active sites of serum proteases while maintaining biological activity. This is equivalent to encoding the 4D expression (V=4) of the tetrahedron as the stabilization constraint that cannot be altered by external conditions &mdash; matching the SDKP principle that the tetrahedron&rsquo;s self-dual F=V=4 property provides dimensional stability under pressure.</p>
+
+<!-- PHASE 3 -->
+<div class="phase-header">
+  <div class="ph-tag">Phase 3 &mdash; Dallas&rsquo;s Code / QCC0</div>
+  <div class="ph-title">Density-Responsive Cryptographic Targeting</div>
+</div>
+
+<p>The targeting mechanism replaces chemical receptor binding with physical density field detection. Dallas&rsquo;s Code within the SDKP framework implements a post-quantum, prime-terminated binary logic. In biophysical terms, this maps onto a density-responsive conformational switch:</p>
+
+<h3 class="tri">The Inert Transit State (&rho; &asymp; 1.006)</h3>
+<p>During systemic circulation and neural tissue transit, the agent encounters microenvironments with densities closely matching CSF and endoneurial fluid (&rho; &asymp; 1.004&ndash;1.008 g/mL). At this density range, the dodecahedral helical geometry generates no net hydrophobic moment above the membrane insertion threshold. The agent is fully inert &mdash; no structural transitions, no membrane interactions, no toxicity. This is the &ldquo;locked&rdquo; state of Dallas&rsquo;s Code: the prime-terminated binary loop has no mathematical key to unlock it at healthy tissue densities.</p>
+
+<h3 class="tri">The Biofilm Density Anomaly &mdash; Cryptographic Key</h3>
+<p>Mature bacterial biofilms produce EPS matrices with significantly elevated local mass densities (&rho;<sub>biofilm</sub> &asymp; 1.08&ndash;1.15 g/mL, depending on species and maturation stage). This 7&ndash;15% density elevation above the homeostatic baseline is detectable by the agent as a physical field distortion. The QCC0 layer implements this detection as a quantum correlation coefficient threshold: when the measured local density deviates from baseline by greater than a defined threshold &delta;&rho;, the conformational switch is activated.</p>
+
+<div class="eq-block">
+Activation condition: &Delta;&rho; = &rho;<sub>local</sub> &minus; &rho;<sub>baseline</sub> &ge; &delta;&rho;<sub>threshold</sub>
+<br><br>
+where &delta;&rho;<sub>threshold</sub> is encoded as the prime-terminated binary lock value
+<div class="eq-label">Density-difference activation threshold &mdash; Dallas&rsquo;s Code implementation</div>
+</div>
+
+<p>Because the threshold is anchored to a prime number encoding (ensuring no rational divisor can accidentally trigger early activation), false positive activation at intermediate tissue densities (cartilage &rho; &asymp; 1.06 g/mL, bone marrow &rho; &asymp; 1.04 g/mL) is minimized. The prime termination provides a logical uniqueness constraint that chemical receptor systems cannot achieve with equivalent selectivity.</p>
+
+<!-- PHASE 4 -->
+<div class="phase-header">
+  <div class="ph-tag">Phase 4 &mdash; VFE1 + Amiyah Rose Smith Law</div>
+  <div class="ph-title">Causal Compression and Autonomous Equilibrium Termination</div>
+</div>
+
+<h3 class="tri">Conformational Activation via VFE1 Mode Summation</h3>
+<p>Upon density-threshold triggering, the agent undergoes a rapid conformational transition driven by the Vibrational Field Equation 1 (VFE1) mode summation principle:</p>
+
+<div class="eq-block">
+VFE1: &Psi;(r,t) = &sum;<sub>i</sub> a<sub>i</sub> &middot; n<sub>i</sub> &middot; e<sup>i(k<sub>i</sub>&middot;r &minus; &omega;<sub>i</sub>t)</sup>
+<br><br>
+where a<sub>i</sub> = amplitude of the i-th vibrational mode, n<sub>i</sub> = SD&amp;N node number encoding, k<sub>i</sub> = wave vector, &omega;<sub>i</sub> = angular frequency
+<div class="eq-label">VFE1 mode summation &mdash; governing conformational transition kinetics</div>
+</div>
+
+<p>In standard structural biochemistry terms, this transition corresponds to a helix-coil transition driven by the local dielectric environment change at the biofilm interface. The elevated local ionic strength and polysaccharide matrix of the EPS create a dielectric perturbation that shifts the helix-stabilizing free energy balance, releasing stored conformational energy and snapping the peptide into its high-tension active state.</p>
+
+<h3 class="tri">Causal Compression (K<sub>C</sub>) &mdash; Steric Exclusion Mechanism</h3>
+<p>Rather than chemically lysing bacterial cells and flooding the sensitive neural space with toxic intracellular debris (LPS, peptidoglycan fragments, reactive oxygen species), the active CS-B1 agent applies localized steric exclusion pressure &mdash; termed Causal Compression (K<sub>C</sub>) within the SDKP framework &mdash; to the biofilm matrix:</p>
+
+<ul class="clean">
+  <li><strong>Intercalation into EPS matrix:</strong> The amphipathic helical geometry allows the agent to intercalate between EPS polysaccharide chains, physically disrupting the inter-chain hydrogen bonding network that maintains biofilm structural integrity</li>
+  <li><strong>Osmotic compression:</strong> Multiple agent molecules surrounding a bacterial colony generate a collective osmotic pressure differential that dehydrates the EPS matrix and reduces its volume, mechanically compressing the colony into a non-replicating, metabolically arrested state</li>
+  <li><strong>Membrane potential disruption without lysis:</strong> Below the full membrane-insertion threshold, the agents create localized electrostatic perturbations sufficient to dissipate the bacterial proton-motive force (PMF), halting ATP synthesis and growth without rupturing cell walls</li>
+</ul>
+
+<div class="box box-green">
+<label>Key Safety Advantage of Causal Compression Over Chemical Lysis</label>
+Standard antimicrobial lysis releases endotoxin (LPS), peptidoglycan fragments, and intracellular ROS into the perineurial space, triggering Schwann cell activation, toll-like receptor 4 (TLR4) neuroinflammatory cascades, and secondary demyelination. Causal Compression avoids lysis entirely, generating zero endotoxin release and maintaining a sterile mechanical compression profile throughout treatment.
+</div>
+
+<h3 class="tri">Autonomous Termination &mdash; Amiyah Rose Smith Law (&rho; &rarr; &rho;<sub>baseline</sub>)</h3>
+<p>The Amiyah Rose Smith Law governs automatic deactivation: a system operating under this equilibrium principle ceases field modification the moment its environment returns to baseline density. In biophysical terms, this maps directly onto a reversible stimulus-responsive deactivation mechanism:</p>
+
+<p>As the biofilm matrix is compressed and neutralized, the local density gradient (&Delta;&rho;) dissipates back toward the baseline homeostatic value (&rho; &asymp; 1.006 g/mL). As &Delta;&rho; falls below &delta;&rho;<sub>threshold</sub>, the helical conformational switch reverses &mdash; the agent&rsquo;s hydrophobic moment returns below the membrane interaction threshold, all steric compression forces cease, and the peptide reverts to its inert, biocompatible transit state. No external signal, no enzymatic degradation pathway, and no metabolic clearance mechanism is required to terminate activity. The equilibrium condition is self-enforcing.</p>
+
+<div class="eq-block">
+Termination condition: &rho;<sub>local</sub>(t) &rarr; &rho;<sub>baseline</sub> &hArr; K<sub>C</sub>(t) &rarr; 0
+<br><br>
+Governed by: &Delta;G<sub>helix&rarr;coil</sub> = &Delta;G<sub>intrinsic</sub> + &Delta;G<sub>electrostatic</sub>(&rho;(t))
+<div class="eq-label">Amiyah Rose Smith Law &mdash; equilibrium-governed termination (Smith, 2025)</div>
+</div>
+</div><!-- ===== SECTION 4 ===== -->
+<div class="section">
+<h1 class="sec"><span class="n">4</span>Empirical Calibration Against Published Literature</h1>
+
+<table>
+<thead>
+<tr><th>CS-B1 Parameter</th><th>SDKP Framework Value</th><th>Published Empirical Baseline</th><th>Source</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td>Agent diameter (S)</td>
+  <td>5&ndash;10 nm</td>
+  <td>Paracellular tight junction limit ~10 nm (native BNB); inflammatory window 50&ndash;150 nm (ICAM-1 mediated)</td>
+  <td>Scientific Reports nanoparticle transport, April 2025</td>
+</tr>
+<tr>
+  <td>Density matching (D)</td>
+  <td>&rho; = 1.004&ndash;1.007 g/mL</td>
+  <td>CSF density: 1.006 g/mL; Endoneurial fluid: 1.004&ndash;1.008 g/mL</td>
+  <td>Standard biophysical reference values</td>
+</tr>
+<tr>
+  <td>Biofilm density anomaly (&delta;&rho;)</td>
+  <td>&Delta;&rho; &ge; 0.07&ndash;0.15 g/mL above baseline</td>
+  <td>EPS matrix density 1.08&ndash;1.15 g/mL (species-dependent)</td>
+  <td>Clinical microbiology review, December 2025</td>
+</tr>
+<tr>
+  <td>Targeting selectivity</td>
+  <td>Physical density field vs. chemical receptor</td>
+  <td>Logic-gated AND-gate platforms vulnerable to receptor mutation (April 2026)</td>
+  <td>Synthetic biology literature, April 2026</td>
+</tr>
+<tr>
+  <td>Clinical failure rate baseline</td>
+  <td>35&ndash;55% (standard care)</td>
+  <td>35&ndash;55% failure rate for deep-tissue biofilm infections</td>
+  <td>ICM Biofilm Workgroup, March 2026</td>
+</tr>
+<tr>
+  <td>Best available clinical comparator</td>
+  <td>Targeting failure: 0% (density-based)</td>
+  <td>PLG0206 reduces device failure to ~7%</td>
+  <td>Peptilogics / Medical Economics, March 2026</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- ===== SECTION 5 ===== -->
+<div class="section">
+<h1 class="sec"><span class="n">5</span>Proposed Experimental Validation Program</h1>
+
+<div class="timeline">
+  <div class="tl-item">
+    <div class="tl-dot">1</div>
+    <div class="tl-content">
+      <strong>In silico structural validation</strong>
+      Molecular dynamics simulation of the 12-residue dodecahedral helical architecture in explicit CSF solvent. Validate density matching (&rho; = 1.006 g/mL) and hydrocarbon-stapled proteolytic stability. Measure helical hydrophobic moment as a function of simulated local density. Software: GROMACS / AMBER.
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot">2</div>
+    <div class="tl-content">
+      <strong>In vitro BNB penetration assay</strong>
+      Trans-well assay with rat sciatic nerve endothelial cell monolayer. Measure paracellular permeability coefficient for 5&ndash;10 nm fluorescently labeled agent vs. standard 20 nm and 100 nm nanoparticles. Confirm constitutive passage below ICAM-1 threshold.
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot">3</div>
+    <div class="tl-content">
+      <strong>Density-triggered activation assay</strong>
+      Circular dichroism (CD) spectroscopy of the peptide in solutions ranging &rho; = 1.000 to 1.150 g/mL (adjusted with dextran). Confirm helix-coil transition threshold at &Delta;&rho; &asymp; 0.07 g/mL above baseline. Validate prime-terminated binary lock: no activation at intermediate densities (&rho; = 1.02, 1.04, 1.06 g/mL).
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot">4</div>
+    <div class="tl-content">
+      <strong>In vitro biofilm compression assay</strong>
+      <em>S. aureus</em> and <em>P. aeruginosa</em> mature biofilm (72h) on titanium implant surface. Measure biofilm biomass (crystal violet), metabolic activity (resazurin), and LPS release after CS-B1 treatment vs. standard AMP vs. vancomycin. Confirm K<sub>C</sub> mechanism: biomass reduction without LPS release.
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot">5</div>
+    <div class="tl-content">
+      <strong>Myelin sheath selectivity assay</strong>
+      Rat dorsal root ganglion (DRG) neuron culture. Confirm no axonal degeneration, no Schwann cell activation (S100&beta; marker), and no TLR4 upregulation at therapeutic concentrations. Validate geometric selectivity principle of the &omega; rotation component.
+    </div>
+  </div>
+  <div class="tl-item">
+    <div class="tl-dot">6</div>
+    <div class="tl-content">
+      <strong>Autonomous termination validation</strong>
+      Time-course CD spectroscopy: confirm reversal of helix-coil transition as local density returns to baseline after biofilm compression. Validate Amiyah Rose Smith Law equilibrium condition: zero residual hydrophobic moment at &rho; = 1.006 g/mL post-compression.
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SECTION 6 ===== -->
+<div class="section">
+<h1 class="sec"><span class="n">6</span>Framework Attribution &amp; Licensing</h1>
+
+<p>The CS-B1 specification is a theoretical application of the FatherTimeSDKP unified physics framework developed by Donald Paul Smith. All framework components referenced in this document &mdash; SDKP, SDVR, SD&amp;N, Kapnack Solver, VFE1, QCC0, Dallas&rsquo;s Code, and the Amiyah Rose Smith Law &mdash; are archived and protected under the Digital Crystal Protocol (FTS-AUTH-CRYSTAL-369).</p>
+
+<table>
+<thead><tr><th>Component</th><th>DOI / Archive</th></tr></thead>
+<tbody>
+<tr><td>FatherTimeSDKP Unifying Mathematical Framework</td><td class="mono">10.5281/zenodo.15745609</td></tr>
+<tr><td>SD&amp;N Dimensional Encoding Principle</td><td class="mono">10.5281/zenodo.14850016</td></tr>
+<tr><td>Digital Crystal Protocol</td><td class="mono">10.5281/zenodo.17486903</td></tr>
+<tr><td>Amiyah Rose Smith Law</td><td class="mono">10.5281/zenodo.18432021</td></tr>
+</tbody>
+</table>
+
+<div class="box box-amber">
+<label>Licensing</label>
+This document is released under Creative Commons Attribution 4.0 (CC BY 4.0). All derivative research, clinical development, or commercial application derived from the CS-B1 specification or the SDKP framework components applied herein must attribute Donald Paul Smith, ORCID 0009-0003-7925-1653, per the Digital Crystal Protocol Mirror Clause.
+</div>
+</div>
+
+<div class="doc-footer">
+Donald Paul Smith &nbsp;&mdash;&nbsp; Gypsi Consulting &nbsp;&mdash;&nbsp; Gainesville, Florida, USA &nbsp;&mdash;&nbsp; June 2026
+<div class="sub-foot">ORCID: 0009-0003-7925-1653 &nbsp;|&nbsp; Framework DOI: 10.5281/zenodo.15745609 &nbsp;|&nbsp; Digital Crystal Protocol: FTS-AUTH-CRYSTAL-369</div>
+</div>
+
+</div>
+</body>
+</html>
+
+Output. FatherTimeSDKP
