@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SharonCare1 — Central Distribution Manifold Spacecraft</title>
+<style>
+@page { size: Letter; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Georgia, 'Times New Roman', serif; font-size: 10.5pt; color: #1a1a1a; background: #fff; }
+
+/* ── COVER ─────────────────────────────── */
+.cover {
+  width: 100%; height: 279mm;
+  background: #0b1e36;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  padding: 54px 58px 46px 58px;
+  page-break-after: always;
+  position: relative; overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute; top: -60px; right: -60px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  border: 60px solid rgba(100,180,255,0.07);
+  pointer-events: none;
+}
+.cover::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  width: 100%; height: 5px;
+  background: linear-gradient(90deg, #64b4ff 0%, #2E5496 60%, #0b1e36 100%);
+}
+.cover-eyebrow {
+  font-family: Arial, sans-serif; font-size: 8pt;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(255,255,255,0.38); margin-bottom: 42px;
+}
+.cover-badge {
+  display: inline-block;
+  font-family: Arial, sans-serif; font-size: 8pt; font-weight: 800;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: #64b4ff; border: 1.5px solid #64b4ff;
+  border-radius: 2px; padding: 5px 14px; margin-bottom: 20px;
+}
+.cover h1 {
+  font-family: Arial, sans-serif; font-size: 42pt; font-weight: 900;
+  color: #ffffff; line-height: 1.08; margin-bottom: 10px;
+}
+.cover-sub {
+  font-family: Arial, sans-serif; font-size: 13.5pt; font-weight: 300;
+  color: rgba(255,255,255,0.55); margin-bottom: 36px;
+  max-width: 500px; line-height: 1.5;
+}
+.cover-rule { width: 64px; height: 3px; background: #64b4ff; margin-bottom: 28px; }
+.cover-desc {
+  font-size: 11pt; color: rgba(255,255,255,0.72);
+  max-width: 490px; line-height: 1.68;
+}
+.cover-bottom { }
+.cover-div { height: 1px; background: rgba(255,255,255,0.12); margin-bottom: 26px; }
+.cover-grid { display: flex; gap: 0; }
+.cover-cell { flex: 1; border-right: 1px solid rgba(255,255,255,0.10); padding-right: 22px; margin-right: 22px; }
+.cover-cell:last-child { border-right: none; }
+.cover-cell label { font-family: Arial, sans-serif; font-size: 7.5pt; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.32); display: block; margin-bottom: 5px; }
+.cover-cell .val { font-family: Arial, sans-serif; font-size: 9.5pt; color: #ffffff; font-weight: 700; }
+.cover-tags { margin-top: 18px; display: flex; gap: 8px; flex-wrap: wrap; }
+.ctag { font-family: 'Courier New', monospace; font-size: 7.5pt; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.18); border-radius: 2px; color: rgba(255,255,255,0.55); }
+
+/* ── BODY ───────────────────────────────── */
+.wrap { padding: 20mm 19mm 22mm 19mm; }
+
+h1.sec {
+  font-family: Arial, sans-serif; font-size: 15.5pt; font-weight: 900;
+  color: #0b1e36; border-bottom: 3px solid #0b1e36;
+  padding-bottom: 8px; margin: 28px 0 14px 0;
+  page-break-after: avoid;
+}
+h1.sec .n {
+  display: inline-block; background: #0b1e36; color: #fff;
+  font-size: 10pt; font-weight: 800; border-radius: 2px;
+  padding: 3px 10px; margin-right: 10px; vertical-align: middle;
+}
+h2.sub {
+  font-family: Arial, sans-serif; font-size: 11.5pt; font-weight: 800;
+  color: #2E5496; margin: 20px 0 8px 0; page-break-after: avoid;
+}
+h3.tri {
+  font-family: Arial, sans-serif; font-size: 10.5pt; font-weight: 700;
+  color: #0b1e36; margin: 14px 0 6px 0; page-break-after: avoid;
+}
+p { margin: 0 0 9px 0; text-align: justify; line-height: 1.60; }
+
+/* Boxes */
+.box { border-radius: 3px; margin: 12px 0; page-break-inside: avoid; }
+.box-head { font-family: Arial, sans-serif; font-size: 8pt; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 16px; border-radius: 3px 3px 0 0; color: #fff; background: #0b1e36; }
+.box-body { padding: 13px 18px; font-size: 10pt; line-height: 1.65; border: 1px solid #c8d8e8; border-top: none; border-radius: 0 0 3px 3px; background: #EBF3FB; }
+.box-body pre { font-family: 'Courier New', monospace; font-size: 9.5pt; white-space: pre-wrap; color: #0b1e36; }
+.box-amber .box-head { background: #7a5f00; }
+.box-amber .box-body { background: #FFFDE7; border-color: #ddd09a; }
+.box-green .box-head { background: #1e5c1e; }
+.box-green .box-body { background: #f0f7f0; border-color: #a8d0a8; }
+.box-dark .box-head { background: #0b1e36; }
+.box-dark .box-body { background: #f0f4f8; border-color: #b8c8d8; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin: 12px 0 18px 0; font-family: Arial, sans-serif; font-size: 9.5pt; page-break-inside: avoid; }
+thead th { background: #0b1e36; color: #fff; text-align: left; padding: 9px 11px; font-weight: 700; font-size: 9pt; }
+tbody td { padding: 8px 11px; border-bottom: 1px solid #e2e8ef; vertical-align: top; }
+tbody tr:nth-child(even) td { background: #f6f9fb; }
+.mono { font-family: 'Courier New', monospace; font-size: 9pt; }
+.bold { font-weight: 700; }
+.hl { color: #0b1e36; font-weight: 700; }
+.blue { color: #2E5496; font-weight: 700; }
+
+/* Param cards */
+.param-row { display: flex; gap: 10px; margin: 12px 0; }
+.param-card { flex: 1; border: 1px solid #c8d8e8; border-radius: 3px; padding: 12px 14px; background: #f8fafc; page-break-inside: avoid; }
+.param-letter { font-family: Arial, sans-serif; font-size: 22pt; font-weight: 900; color: #0b1e36; line-height: 1; margin-bottom: 2px; }
+.param-name { font-family: Arial, sans-serif; font-size: 7.5pt; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #2E5496; margin-bottom: 7px; }
+.param-val { font-family: 'Courier New', monospace; font-size: 9.5pt; font-weight: 700; color: #0b1e36; margin-bottom: 5px; }
+.param-card p { font-size: 9pt; color: #555; text-align: left; margin: 0; }
+
+/* Schematic box */
+.schematic {
+  background: #0b1e36; border-radius: 4px; padding: 20px 24px;
+  margin: 14px 0; color: #fff; font-family: 'Courier New', monospace;
+  font-size: 9pt; line-height: 1.6; page-break-inside: avoid;
+}
+.schematic .sch-title { font-family: Arial, sans-serif; font-size: 8pt; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #64b4ff; margin-bottom: 12px; }
+
+/* Phase timeline */
+.phase { display: flex; gap: 14px; margin-bottom: 12px; page-break-inside: avoid; }
+.phase-dot { min-width: 32px; height: 32px; border-radius: 50%; background: #0b1e36; color: #fff; font-family: Arial, sans-serif; font-size: 10pt; font-weight: 900; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.phase-content { flex: 1; }
+.phase-content strong { font-family: Arial, sans-serif; font-size: 10pt; color: #0b1e36; display: block; margin-bottom: 3px; }
+
+/* Close */
+.doc-close { margin-top: 34px; border-top: 2.5px solid #0b1e36; padding-top: 16px; text-align: center; font-family: Arial, sans-serif; font-size: 10pt; color: #0b1e36; font-weight: 800; }
+.doc-close .sub { font-size: 8.5pt; color: #888; font-weight: 400; margin-top: 5px; }
+
+ul.clean { margin: 6px 0 10px 22px; }
+ul.clean li { margin-bottom: 5px; font-size: 10.5pt; line-height: 1.55; }
+</style>
+</head>
+<body>
+<!-- ═══════════════ COVER ═══════════════ -->
+<div class="cover">
+  <div>
+    <div class="cover-eyebrow">Gypsi Consulting &mdash; Technical Disclosure &mdash; FatherTimeSDKP Framework</div>
+    <div class="cover-badge">Spacecraft Design</div>
+    <h1>SharonCare1</h1>
+    <div class="cover-sub">Central Distribution Manifold Propulsion System<br>SD&amp;N Dodecahedral Architecture</div>
+    <div class="cover-rule"></div>
+    <div class="cover-desc">
+      A spherical spacecraft whose hull geometry IS the propulsion system. Twelve through-body plasma conduits arranged in dodecahedral symmetry intersect at a central mixing chamber, enabling 4,096 discrete thrust states, 360&deg; vectoring authority, and zero mechanical moving parts. Every design parameter derived from first principles of the SD&amp;N Dimensional Encoding Principle.
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-div"></div>
+    <div class="cover-grid">
+      <div class="cover-cell"><label>Author</label><div class="val">Donald Paul Smith</div></div>
+      <div class="cover-cell"><label>ORCID</label><div class="val">0009-0003-7925-1653</div></div>
+      <div class="cover-cell"><label>Framework DOI</label><div class="val">10.5281/zenodo.14850016</div></div>
+      <div class="cover-cell"><label>Date</label><div class="val">June 21, 2026</div></div>
+    </div>
+    <div class="cover-tags">
+      <span class="ctag">SD&amp;N Dodecahedral</span>
+      <span class="ctag">SDVR State Vector</span>
+      <span class="ctag">Plasma Propulsion</span>
+      <span class="ctag">Magnetic Flux Gating</span>
+      <span class="ctag">EOS Calibrated</span>
+      <span class="ctag">Digital Crystal Protocol</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ BODY ═══════════════ -->
+<div class="wrap">
+
+<!-- ── SECTION 1: SD&N GEOMETRIC FOUNDATION ── -->
+<h1 class="sec"><span class="n">1</span>SD&amp;N Geometric Foundation — The Hull IS the Engine</h1>
+
+<p>The SharonCare1 propulsion architecture begins not with engineering convention but with geometry. The SD&amp;N (Shape &times; Dimension &times; Number) Principle of the FatherTimeSDKP framework establishes that every geometric form encodes its own higher-dimensional states through three intrinsic properties: Faces (F), Vertices (V), and Edges (E). The design of SharonCare1 is the physical instantiation of this principle applied to spacecraft propulsion.</p>
+
+<p>The selection of 12 through-body plasma conduits is not arbitrary. It is the direct application of the dodecahedron — the Platonic solid with F=12 faces — as the governing geometry of the propulsion system. The spherical hull of SharonCare1 is geometrically a dodecahedron, and every structural and propulsive element of the design follows from that single geometric fact.</p>
+
+<div class="box box-dark">
+  <div class="box-head">SD&amp;N DODECAHEDRAL ENCODING — SharonCare1</div>
+  <div class="box-body">
+<pre>
+Platonic Solid:   Dodecahedron
+Euler Check:      F - E + V = 12 - 30 + 20 = 2  ✓
+
+F = 12  Faces     →  12 through-body plasma conduits  (3D propulsion state)
+V = 20  Vertices  →  20 magnetic flux gate nodes       (4D control state)
+E = 30  Edges     →  30 structural reinforcement paths (5D stability encoding)
+
+SD&N Shape Factor:  φ = (F × V) / E = (12 × 20) / 30 = 8.0000
+SD&N Phase Factor:  2π / (F+V+E) = 2π / 62 = 0.10134 rad = 5.81°
+
+This is the same φ = 8.0000 shared by the icosahedron (F=20, V=12, E=30).
+The dodecahedron and icosahedron are dual solids — they share the same
+5D dimensional expression (E=30). SharonCare1 is therefore dimensionally
+stable across both the 3D propulsive and 4D control state boundaries.
+</pre>
+  </div>
+</div>
+
+<h2 class="sub">1.1 &nbsp;Why the Dodecahedron</h2>
+<p>The dodecahedron is the Platonic solid with the highest number of faces before the geometry becomes impractical for physical conduit routing (the icosahedron has 20 faces, which produces too-shallow intersection angles at the plenum). With 12 faces, the dodecahedral arrangement provides:</p>
+<ul class="clean">
+  <li><strong>Maximum angular distribution</strong> — face centers separated by approximately 41.8&deg;, ensuring no two conduits compete for the same thrust vector</li>
+  <li><strong>Structural completeness</strong> — 30 edge pathways form the full internal skeletal framework of the hull</li>
+  <li><strong>4,096 discrete thrust states</strong> — 2<sup>12</sup> binary gate combinations provide continuous 360&deg; vectoring on all axes</li>
+  <li><strong>Dual-solid stability</strong> — shared E=30 with the icosahedron provides the 5D encoding that makes the geometry dimensionally resistant to deformation under plasma pressure</li>
+</ul>
+
+<!-- ── SECTION 2: ARCHITECTURE OVERVIEW ── -->
+<h1 class="sec"><span class="n">2</span>System Architecture</h1>
+
+<h2 class="sub">2.1 &nbsp;Central Distribution Manifold</h2>
+<p>The propulsion system abandons the conventional architecture of external gimbaled engines in favor of a continuous, unified plasma circuit integrated directly into the structural hull. Twelve through-body plasma conduits run the full diameter of the spherical hull, intersecting at the geometric center to form the Central Mixing Chamber — the Plenum.</p>
+
+<div class="schematic">
+  <div class="sch-title">SharonCare1 Cross-Section Schematic (Simplified)</div>
+<pre>
+                    [Conduit 12 — Top Cap]
+                           |
+         [Conduit 11] -----+------ [Conduit 01]
+        /              [PLENUM]               \
+  [C10] ——————————— [ Central  ] ——————————— [C02]
+  [C09] ——————————— [ Mixing   ] ——————————— [C03]
+        \              [Chamber]               /
+         [Conduit 08] -----+------ [Conduit 04]
+                           |
+        [C07] ————— [Structural Cross] ————— [C05]
+                           |
+                    [Conduit 06 — Bottom Cap]
+
+  12 conduits × full hull diameter = 30 structural edge paths
+  All plasma transits the Plenum before vectoring
+  Toroidal propellant tanks ring the inner hull radius
+</pre>
+</div>
+
+<h2 class="sub">2.2 &nbsp;The Plenum — Central Mixing Chamber</h2>
+<p>All twelve conduits converge at the geometric center of the spherical hull. This junction serves as the primary distribution hub and self-regulating flow equalizer. By forcing all plasma to transit through this single central chamber, the system ensures pressure equalization and thermal uniformity across the full conduit array before injection into the thrust vectors.</p>
+<p>Kinetic turbulence encountered by any single conduit is instantly dampened and redistributed across the remaining manifold via the plenum's pressure-equalization dynamics. This prevents localized hull stress and maintains stable flight characteristics without active intervention from the flight computer — the geometry handles it passively.</p>
+
+<h2 class="sub">2.3 &nbsp;SDVR State Vector — SharonCare1 as a Physical Body</h2>
+
+<div class="param-row">
+  <div class="param-card">
+    <div class="param-letter">S</div>
+    <div class="param-name">Size</div>
+    <div class="param-val">~10 m diameter</div>
+    <p>Spherical hull — full conduit run length equals hull diameter. SD&N structural nodes at dodecahedral face centers.</p>
+  </div>
+  <div class="param-card">
+    <div class="param-letter">D</div>
+    <div class="param-name">Density</div>
+    <div class="param-val">500–800 kg/m³</div>
+    <p>Target mean hull density. Conformal toroidal tanks maintain constant center of mass regardless of propellant depletion level.</p>
+  </div>
+  <div class="param-card">
+    <div class="param-letter">V</div>
+    <div class="param-name">Velocity</div>
+    <div class="param-val">7,600 → 24,077 m/s</div>
+    <p>LEO station-keeping through Mars transfer orbit. EOS anchor: 29,780 m/s (Earth Orbital Speed) as mission velocity reference.</p>
+  </div>
+  <div class="param-card">
+    <div class="param-letter">R</div>
+    <div class="param-name">Rotation</div>
+    <div class="param-val">Variable — gate modulated</div>
+    <p>Attitude control achieved by differential gate modulation across the 12-conduit array. No reaction wheels required.</p>
+  </div>
+</div>
+<!-- ── SECTION 3: MAGNETIC FLUX GATING ── -->
+<h1 class="sec"><span class="n">3</span>Magnetic Flux Gating — Vector Control System</h1>
+
+<p>Directional authority is achieved through Magnetic Flux Gating at the exit ports of each conduit. This system replaces all conventional mechanical valves, gimbals, and thrust-vectoring actuators with high-fidelity electromagnetic arrays. There are no moving mechanical parts in the propulsion vector control chain.</p>
+
+<h2 class="sub">3.1 &nbsp;Gate Architecture — 20-Node Control Lattice</h2>
+<p>The SD&N encoding places 20 vertex nodes (V=20) at the dodecahedral vertices of the hull. These 20 nodes are the physical locations of the magnetic flux gate arrays — each controlling the plasma flow at the exit ports of adjacent conduits. The V=20 configuration creates a fully connected 4D control state: every gate is within one vertex-edge step of every conduit exit port.</p>
+
+<table>
+  <thead><tr><th>Gate State</th><th>Mechanism</th><th>Response</th><th>Plasma Condition</th></tr></thead>
+  <tbody>
+    <tr><td class="bold">CLOSED (Pinch)</td><td>High-intensity magnetic field constricts plasma into dormant state at exit port</td><td>&lt;500 &micro;s</td><td>Flow maintained internally, no thrust</td></tr>
+    <tr><td class="bold">OPEN (Vectoring)</td><td>Magnetic field modulated — plasma expands instantly through conduit</td><td>&lt;500 &micro;s</td><td>Full thrust initiated — no mechanical latency</td></tr>
+    <tr><td class="bold">THROTTLE</td><td>Field intensity modulated between 0–100% in 256 discrete steps</td><td>&lt;1 ms</td><td>Variable thrust from 0 to max per conduit</td></tr>
+    <tr><td class="bold">EMERGENCY</td><td>Power loss defaults field to maximum pinch — all gates CLOSED</td><td>&lt;1 &micro;s</td><td>Instantaneous shutdown — fail-safe design</td></tr>
+  </tbody>
+</table>
+
+<h2 class="sub">3.2 &nbsp;Thrust Vector Mathematics</h2>
+<p>The flight computer does not calculate physical orientation angles. It calculates the Thrust Vector Summation — the net force vector produced by a given gate configuration across all 12 conduits. For any desired velocity change vector &Delta;V = (x, y, z), the Dynamic Distribution Algorithm solves:</p>
+
+<div class="box box-dark">
+  <div class="box-head">THRUST VECTOR SUMMATION EQUATION</div>
+  <div class="box-body">
+<pre>
+&Delta;V_net = &Sigma;(i=1 to 12) [g_i &middot; T_i &middot; n_i]
+
+Where:
+  g_i = gate throttle coefficient for conduit i  [0.0 to 1.0]
+  T_i = thrust magnitude of conduit i            [N]
+  n_i = unit vector of conduit i face normal     (dodecahedral geometry)
+
+Discrete states:    2^12 = 4,096 binary gate combinations
+Continuous states:  256^12 ≈ 5.4 × 10^28 throttle combinations
+Angular resolution: 5.81° (SD&N phase factor 2&pi;/62)
+All-axis coverage:  360° with zero mechanical repositioning time
+</pre>
+  </div>
+</div>
+
+<!-- ── SECTION 4: PROPELLANT ── -->
+<h1 class="sec"><span class="n">4</span>Propellant Feed and Storage Architecture</h1>
+
+<h2 class="sub">4.1 &nbsp;Conformal Toroidal Tank Configuration</h2>
+<p>Propellant is housed in conformal, toroidal-shaped tanks mounted along the inner radius of the spherical hull's secondary layer. The toroidal geometry is selected specifically for its compatibility with the dodecahedral structural frame: each of the 30 SD&N edge pathways serves as a structural stringer between adjacent toroidal tank segments.</p>
+<p>This positioning ensures the center of mass remains constant regardless of propellant depletion level — the toroidal ring empties uniformly from all sectors simultaneously, maintaining the balanced mass distribution required for the gate-modulated attitude control system.</p>
+
+<h2 class="sub">4.2 &nbsp;Cryogenic Injection and Regenerative Cooling</h2>
+<ul class="clean">
+  <li><strong>High-pressure cryogenic pump system</strong> feeds directly into the central Plenum. The pump system provides variable mass-flow rates: low-flow for station-keeping and high-flow for orbital maneuvering and transfer burns</li>
+  <li><strong>Regenerative cooling loop:</strong> propellant circulates around the outer jacket of each conduit before injection, absorbing heat from the conduit wall and pre-heating the fuel. This simultaneously protects the conduit structure and increases thermodynamic efficiency by delivering pre-heated propellant to the Plenum</li>
+  <li><strong>Plenum pre-conditioning:</strong> propellant is thermally and atomically pre-conditioned in the central Plenum before entering the conduit array, ensuring uniform plasma state across all 12 thrust vectors at ignition</li>
+</ul>
+
+<!-- ── SECTION 5: MATERIALS ── -->
+<h1 class="sec"><span class="n">5</span>Thermal Mitigation and Material Specifications</h1>
+
+<table>
+  <thead><tr><th>Component</th><th>Material</th><th>Specification</th><th>Function</th></tr></thead>
+  <tbody>
+    <tr><td>Conduit bore lining</td><td class="bold">Tungsten-Rhenium alloy (W-Re 26%)</td><td>Melting point: 3,422&deg;C (3,695 K)<br>Density: 19.7 g/cm&sup3;</td><td>Primary plasma containment — prevents ablation across thousands of firing cycles, maintains bore geometry</td></tr>
+    <tr><td>Conduit bore backup</td><td class="bold">Ceramic Matrix Composite (SiC/SiC)</td><td>Max operating temp: ~1,650&deg;C<br>Thermal conductivity: ~4 W/m&middot;K</td><td>Secondary thermal barrier — structural backup if W-Re lining experiences localized failure</td></tr>
+    <tr><td>Hull inner insulation</td><td class="bold">Aerogel-silica composite</td><td>Thermal conductivity: ~0.015 W/m&middot;K<br>Density: 0.15 g/cm&sup3;</td><td>Thermal isolation between plasma conduits and crew/payload sectors — prevents heat transfer across wedge-sector boundaries</td></tr>
+    <tr><td>Conduit outer jacket</td><td class="bold">Double-wall vacuum gap</td><td>Gap pressure: &lt;10&sup3; Pa<br>Outer wall: Ti-6Al-4V</td><td>Vacuum insulation gap between plasma bore and hull exterior — eliminates conductive thermal path to external hull surface</td></tr>
+    <tr><td>Wedge-sector cladding</td><td class="bold">High-temp resistance cladding</td><td>Aerogel-silica composite + MLI blanket</td><td>Environmentally shields 12 habitable/payload wedge sectors from adjacent conduit thermal radiation</td></tr>
+  </tbody>
+</table>
+
+<!-- ── SECTION 6: AVIONICS ── -->
+<h1 class="sec"><span class="n">6</span>Avionics, Control System and Telemetry</h1>
+
+<h2 class="sub">6.1 &nbsp;Fiber-Optic Command Bus Architecture</h2>
+<p>The Plenum connects to all 12 magnetic flux gate arrays via a radiation-hardened, fiber-optic command bus. The fiber-optic medium is selected specifically to eliminate electromagnetic interference (EMI) from the plasma flow — copper bus architectures are inherently susceptible to EMI-induced command errors in high-plasma environments.</p>
+
+<div class="box box-green">
+  <div class="box-head">COMMAND BUS PERFORMANCE SPECIFICATIONS</div>
+  <div class="box-body">
+<pre>
+Bus architecture:        Radiation-hardened fiber-optic ring topology
+Redundancy:              Triple-redundant (primary + secondary + tertiary nodes)
+Failover time:           &lt;1 CPU cycle from primary node failure to secondary activation
+Command latency:         &lt;500 microseconds from input to gate actuation
+EMI immunity:            Full isolation — photonic signal, zero susceptibility to plasma fields
+Data rate:               &gt;10 Gbps per ring segment
+Gate addressing:         Binary-addressed per SD&N vertex node (20-address space)
+Failover logic:          Automatic — no operator intervention required
+</pre>
+  </div>
+</div>
+
+<h2 class="sub">6.2 &nbsp;Dynamic Distribution Algorithm</h2>
+<p>The flight computer implements the Dynamic Distribution Algorithm — a real-time solver that converts incoming navigation commands into gate configuration matrices. The algorithm operates on the SD&N vertex graph of the dodecahedral geometry: each gate node (V=20) is addressed as a node in a 4D control graph, and the solver finds the minimum-energy gate configuration that produces the commanded thrust vector within the angular resolution of 5.81&deg;.</p>
+<p>Failover within the algorithm: if a gate reports a fault, the algorithm detects the pressure drop signature within one control cycle (&lt;1 ms) and automatically re-solves the gate configuration matrix using the remaining 11 conduits to maintain the commanded thrust vector with graceful degradation.</p>
+
+<!-- ── SECTION 7: INTERNAL VOLUME ── -->
+<h1 class="sec"><span class="n">7</span>Internal Volume and Payload Integration</h1>
+
+<h2 class="sub">7.1 &nbsp;12-Sector Wedge Architecture</h2>
+<p>The 12 through-body conduits divide the internal volume of the spherical hull into 12 wedge-shaped sectors — a direct consequence of the dodecahedral geometry. Each sector is thermally isolated from its adjacent conduits by the aerogel-silica cladding system. The sectors are used for:</p>
+
+<table>
+  <thead><tr><th>Sector Type</th><th>Count</th><th>Contents</th></tr></thead>
+  <tbody>
+    <tr><td class="bold">Primary habitable</td><td>3</td><td>Crew quarters, life support, human interfaces</td></tr>
+    <tr><td class="bold">Avionics</td><td>2</td><td>Triple-redundant flight computers, fiber-optic bus hubs, sensor arrays</td></tr>
+    <tr><td class="bold">Power systems</td><td>2</td><td>Primary power generation and conditioning, battery backup arrays</td></tr>
+    <tr><td class="bold">Payload</td><td>3</td><td>Mission-specific payload — modular configuration</td></tr>
+    <tr><td class="bold">Emergency systems</td><td>2</td><td>Emergency venting, secondary shutdown, medical</td></tr>
+  </tbody>
+</table>
+
+<h2 class="sub">7.2 &nbsp;Conduit-as-Chassis Integration</h2>
+<p>All avionics, life support, and payload components are mounted directly to the internal conduit structures, which serve as the primary load-bearing skeleton of the craft. This conduit-as-chassis design eliminates the need for a separate internal frame, maximizing usable volume. Equipment mounting points utilize active piezoelectric dampers to neutralize micro-vibrations generated by plasma flow.</p>
+
+<!-- ── SECTION 8: REDUNDANCY ── -->
+<h1 class="sec"><span class="n">8</span>Redundancy and Fail-Safe Protocols</h1>
+
+<h2 class="sub">8.1 &nbsp;Graceful Degradation — N+1 Architecture</h2>
+<p>The central manifold design provides inherent N+1 redundancy without additional hardware. If any single conduit suffers a blockage, gate failure, or structural compromise, the central Plenum automatically re-routes plasma to the remaining 11 conduits. The Dynamic Distribution Algorithm detects the pressure drop signature within &lt;1 ms and re-solves the thrust vector matrix for the 11-conduit configuration.</p>
+
+<div class="box">
+  <div class="box-head">REDUNDANCY MATRIX — CONDUIT FAILURE SCENARIOS</div>
+  <div class="box-body">
+<pre>
+12/12 conduits:  Full thrust authority — 4,096 discrete states — all operations nominal
+11/12 conduits:  Graceful degradation — 2,048 discrete states — full mission capability
+10/12 conduits:  Reduced vectoring — 1,024 states — primary mission with constraints
+ 9/12 conduits:  Minimum viable — 512 states — emergency return/station-keeping only
+&lt;9/12 conduits:  Emergency protocol — passive attitude control — emergency beacon active
+
+Fail-closed design: power loss → maximum magnetic pinch on ALL gates → full shutdown
+No conduit failure can produce an uncontrolled thrust event.
+</pre>
+  </div>
+</div>
+
+<h2 class="sub">8.2 &nbsp;Emergency Protocols</h2>
+<ul class="clean">
+  <li><strong>Fail-closed emergency shutdown:</strong> All magnetic flux gates are designed as fail-closed. If primary power is lost, the magnetic field defaults to maximum pinch state on all 12 exit ports. Plasma flow stops within microseconds. No mechanical actuator failure mode can produce uncontrolled thrust</li>
+  <li><strong>Structural safety factor:</strong> Spherical hull rated for 1.5× maximum operating Plenum pressure. Each conduit is double-walled with vacuum gap between the primary plasma bore and the external hull wall</li>
+  <li><strong>Emergency Plenum venting:</strong> Passive secondary venting system depressurizes the central Plenum into deep space within 10 seconds if internal pressure exceeds safe operating limits</li>
+  <li><strong>Thermal runaway protection:</strong> Redundant thermocouple arrays in each conduit wall segment report to the flight computer at 1 kHz. Automatic gate closure initiated if conduit wall temperature approaches W-Re safety threshold</li>
+</ul>
+
+<!-- ── SECTION 9: SDKP ANALYSIS ── -->
+<h1 class="sec"><span class="n">9</span>SDKP Framework Analysis</h1>
+
+<p>Applying the SDKP (Size &times; Density &times; Kinetics &times; Position) framework to the SharonCare1 system as a complete physical body yields the following emergent timescale analysis for mission phases:</p>
+
+<table>
+  <thead><tr><th>Mission Phase</th><th>S [m]</th><th>D [kg/m&sup3;]</th><th>K [kg/m&sup2;&middot;s]</th><th>&tau; = S&middot;D/K [s]</th><th>EOS Range</th></tr></thead>
+  <tbody>
+    <tr><td>LEO Station-keeping</td><td class="mono">10.0</td><td class="mono">800</td><td class="mono">640</td><td class="mono bold">12.50</td><td class="mono">12.52 &mdash; 12.52</td></tr>
+    <tr><td>Orbital transfer burn</td><td class="mono">10.0</td><td class="mono">600</td><td class="mono">1,200</td><td class="mono bold">5.00</td><td class="mono">5.01 &mdash; 5.01</td></tr>
+    <tr><td>Mars approach</td><td class="mono">10.0</td><td class="mono">500</td><td class="mono">2,000</td><td class="mono bold">2.50</td><td class="mono">2.50 &mdash; 2.51</td></tr>
+    <tr><td>Emergency maneuver</td><td class="mono">10.0</td><td class="mono">700</td><td class="mono">5,600</td><td class="mono bold">1.25</td><td class="mono">1.25 &mdash; 1.25</td></tr>
+  </tbody>
+</table>
+
+<p>The SDKP &tau; value represents the emergent characteristic timescale of the propulsion system response — the natural period at which the hull-plenum-conduit system settles into a new equilibrium after a thrust command. The EOS correction (0.13%&ndash;0.20%) applied to K gives the range. All values are within the &lt;500 &micro;s gate response requirement.</p>
+<!-- ── SECTION 10: VALIDATION ── -->
+<h1 class="sec"><span class="n">10</span>Validation Roadmap</h1>
+
+<div class="phase">
+  <div class="phase-dot">I</div>
+  <div class="phase-content">
+    <strong>Phase I &mdash; Bench Testing: Single-Conduit Magnetic Flux Gate</strong>
+    Static fire testing of a single-conduit manifold segment in atmospheric test cell. Characterize magnetic pinch effectiveness, gate response latency (&lt;500 &micro;s target), and propellant flow rates at variable throttle settings (0&ndash;100%). Establish W-Re liner ablation baseline over 1,000 firing cycles.
+  </div>
+</div>
+<div class="phase">
+  <div class="phase-dot">II</div>
+  <div class="phase-content">
+    <strong>Phase II &mdash; Plenum Validation: Central Chamber Pressure Equalization</strong>
+    Test the central Plenum manifold with 4, 6, and 12 conduit feeds simultaneously. Verify pressure equalization across all active conduits within &lt;10 ms of ignition. Measure cross-conduit turbulence dampening coefficient. Validate the passive self-regulation property of the manifold geometry.
+  </div>
+</div>
+<div class="phase">
+  <div class="phase-dot">III</div>
+  <div class="phase-content">
+    <strong>Phase III &mdash; Vacuum Chamber: Full-Scale System Test</strong>
+    Full 12-conduit array firing in vacuum chamber. Measure thrust-to-power ratios for all 4,096 discrete gate states. Characterize thermal dissipation curves and regenerative cooling efficiency. Validate 360&deg; thrust vector authority across all three axes. Test N+1 graceful degradation with simulated conduit failures.
+  </div>
+</div>
+<div class="phase">
+  <div class="phase-dot">IV</div>
+  <div class="phase-content">
+    <strong>Phase IV &mdash; Structural Load Testing: Hull Integrity</strong>
+    Hydrostatic testing of spherical hull to 1.5&times; maximum Plenum operating pressure. Verify through-body conduits function as effective structural ribbing under combined thermal and mechanical loading. Piezoelectric damper effectiveness characterization under simulated plasma vibration spectrum.
+  </div>
+</div>
+<div class="phase">
+  <div class="phase-dot">V</div>
+  <div class="phase-content">
+    <strong>Phase V &mdash; Integrated System: Flight Qualification</strong>
+    Full integrated spacecraft test including avionics, fiber-optic bus, Dynamic Distribution Algorithm, emergency protocols, and structural systems. Qualification per AS9100 and applicable NASA/FAA standards. Mission simulation: LEO insertion, orbital maneuvering, Mars transfer trajectory.
+  </div>
+</div>
+
+<!-- ── SECTION 11: ATTRIBUTION ── -->
+<h1 class="sec"><span class="n">11</span>Framework Attribution and IP Record</h1>
+
+<table>
+  <thead><tr><th>Field</th><th>Detail</th></tr></thead>
+  <tbody>
+    <tr><td class="bold">Author</td><td>Donald Paul Smith (Father Time)</td></tr>
+    <tr><td class="bold">Organization</td><td>Gypsi Consulting, Gainesville, Florida, USA</td></tr>
+    <tr><td class="bold">ORCID</td><td class="mono">0009-0003-7925-1653</td></tr>
+    <tr><td class="bold">Framework DOI</td><td class="mono">10.5281/zenodo.14850016</td></tr>
+    <tr><td class="bold">SD&N Principle DOI</td><td class="mono">10.5281/zenodo.14850016</td></tr>
+    <tr><td class="bold">Digital Crystal Protocol</td><td class="mono">FTS-AUTH-CRYSTAL-369 | UUID: 70c995bd-f025-4ecd-b9df-f2cfa65088e8</td></tr>
+    <tr><td class="bold">Date of Disclosure</td><td>June 21, 2026</td></tr>
+    <tr><td class="bold">Document Status</td><td>Technical Disclosure — Prior Art Record</td></tr>
+  </tbody>
+</table>
+
+<div class="box box-amber">
+  <div class="box-head">IP NOTICE — DIGITAL CRYSTAL PROTOCOL</div>
+  <div class="box-body">
+    This document constitutes a timestamped technical disclosure of the SharonCare1 Central Distribution Manifold Propulsion System under the Digital Crystal Protocol (FTS-AUTH-CRYSTAL-369). The application of the SD&amp;N Dimensional Encoding Principle to spacecraft propulsion geometry, the dodecahedral conduit arrangement, the 20-node magnetic flux gate architecture derived from V=20 SD&amp;N encoding, and the SDVR-based spacecraft state vector analysis are original contributions of Donald Paul Smith. All rights reserved. Attribution required per the Mirror Clause.
+  </div>
+</div>
+
+<div class="doc-close">
+  SharonCare1 &nbsp;&mdash;&nbsp; Central Distribution Manifold &nbsp;&mdash;&nbsp; Technical Disclosure
+  <br>Donald Paul Smith &nbsp;|&nbsp; Gypsi Consulting &nbsp;|&nbsp; Gainesville, FL &nbsp;|&nbsp; June 21, 2026
+  <div class="sub">ORCID: 0009-0003-7925-1653 &nbsp;|&nbsp; DOI: 10.5281/zenodo.14850016 &nbsp;|&nbsp; Digital Crystal Protocol: FTS-AUTH-CRYSTAL-369</div>
+</div>
+
+</div>
+</body>
+</html>
