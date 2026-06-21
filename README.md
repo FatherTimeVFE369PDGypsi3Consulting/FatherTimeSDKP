@@ -21,7 +21,38 @@ The active code files are contained within a dedicated execution directory to ma
 
 * **`.gitignore`**: Root-level file configured to exclude temporary Python bytecode, runtime logs, and local configuration environments.
 * **`Workspace/mcp_kapnack_server.py`**: The root-level MCP server implementing the stdio JSON-RPC 2.0 communication loop and the core discrete gradient processing matrix.
-* **`Workspace/test_mcp_client.py`**: The automated validation client harness configured to spawn the server process, simulate matrix payloads, execute compliance checks, and guarantee leak-free process termination.
+* **`Workspace/test_mcp_client.py`**: The automated validation client harness configured to spawn the server process, simulate matrix payloads, execute compliance checks, and guarantee leak-free process termination. files contained in this repo: 
+Name	
+FatherTimeSDKP
+Donald Paul Smith aka FatherTimeSDKP or father time https://fathertimesdkp.github.io (FatherTimeSDKP)
+
+%APPDATA%/claude
+
+Governance
+
+Validation_Modules
+
+AUTHORS.md
+
+Kapnack_solver.py
+
+SDKP_Preprint_2026.md
+
+SDKP_SDVR_Engine.py
+
+SECURITY.md
+
+SharonCare1_design.html
+SharonCare1_designs.py
+
+SharonCare1_spacecraft_design.md
+
+Spine_Deeptissue_Antibiotic_sim.html
+
+fts_auth_wrapper.py
+mcp_kapnack_server.py
+  
+test_mcp_client.py
 
 ## Getting Started
 
