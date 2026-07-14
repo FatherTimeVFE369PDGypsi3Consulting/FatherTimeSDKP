@@ -16,7 +16,8 @@ The code in this repository models a continuous structural array using the stric
 * **Security (Dallas's Code):** The final JSON-RPC response payload is cryptographically secured and validated via a prime-terminated binary protocol seal.
 
 ## Repository Workspace Layout
-
+and validation files for emprical data :
+https://github.com/FatherTimeVFE369PDGypsi3Consulting/FatherTimeSDKP/blob/main/Framework_Vaildation.md
 The active code files are contained within a dedicated execution directory to maintain environment isolation:
 
 * **`.gitignore`**: Root-level file configured to exclude temporary Python bytecode, runtime logs, and local configuration environments.
